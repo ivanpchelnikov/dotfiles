@@ -68,7 +68,6 @@ call plug#begin('~/.config/nvim/plugged')
     set showcmd " show incomplete commands
     set noshowmode " don't show which mode disabled for PowerLine
     set wildmode=list:longest " complete files like a shell
-    set scrolloff=3 " lines of text around cursor
     set shell=$SHELL
     set cmdheight=1 " command bar height
     set title " set terminal title
@@ -485,6 +484,7 @@ call plug#begin('~/.config/nvim/plugged')
         let g:DevIconsEnableFolderExtensionPatternMatching = 1
         let NERDTreeDirArrowExpandable = "\u00a0" " make arrows invisible
         let NERDTreeDirArrowCollapsible = "\u00a0" " make arrows invisible
+        let NERDTreeNodeDelimiter = "\u263a" " smiley face
 
         augroup nerdtree
             autocmd!
@@ -605,6 +605,7 @@ call plug#begin('~/.config/nvim/plugged')
         let g:ale_echo_msg_error_str = '✖'
         let g:ale_echo_msg_warning_str = '⚠'
         let g:ale_echo_msg_format = '%severity% %s% [%linter%% code%]'
+        let g:ale_completion_enabled = 1
 
         let g:ale_linters = {
         \   'javascript': ['eslint', 'tsserver'],
@@ -618,6 +619,7 @@ call plug#begin('~/.config/nvim/plugged')
         let g:ale_fixers['css'] = ['prettier']
         let g:ale_javascript_prettier_use_local_config = 1
         let g:ale_fix_on_save = 0
+        nmap <silent><leader>af :ALEFix<cr>
     " }}}
 
     " UltiSnips {{{
@@ -626,14 +628,14 @@ call plug#begin('~/.config/nvim/plugged')
     " }}}
 
     " Completion {{{
-        if (has('nvim'))
-            Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-        else
-            Plug 'Shougo/deoplete.nvim'
-            Plug 'roxma/nvim-yarp'
-            Plug 'roxma/vim-hug-neovim-rpc'
-        endif
-        let g:deoplete#enable_at_startup = 1
+        " if (has('nvim'))
+        "     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+        " else
+        "     Plug 'Shougo/deoplete.nvim'
+        "     Plug 'roxma/nvim-yarp'
+        "     Plug 'roxma/vim-hug-neovim-rpc'
+        " endif
+        " let g:deoplete#enable_at_startup = 1
     " }}}
 " }}}
 
@@ -672,9 +674,9 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
         Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
-        Plug 'mhartington/nvim-typescript', { 'for': 'typescript', 'do': './install.sh' }
-        let g:nvim_typescript#diagnostics_enable = 0
-        let g:nvim_typescript#max_completion_detail=100
+        " Plug 'mhartington/nvim-typescript', { 'for': 'typescript', 'do': './install.sh' }
+        " let g:nvim_typescript#diagnostics_enable = 0
+        " let g:nvim_typescript#max_completion_detail=100
     " }}}
 
 
