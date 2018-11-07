@@ -22,7 +22,7 @@ formulas=(
     mas
     neovim/neovim/neovim
     node
-    nginx
+    #nginx
     python
     reattach-to-user-namespace
     the_silver_searcher

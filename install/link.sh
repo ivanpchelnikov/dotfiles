@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
-DOTFILES=$HOME/code/dotfiles
+DOTFILES=$HOME/.dotfiles
 
 echo -e "\\nCreating symlinks"
 echo "=============================="
 linkables=$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )
 for file in $linkables ; do
     target="$HOME/.$( basename "$file" '.symlink' )"
+    echo "Checking symlink for $file, home: $HOME, target: $target"
     if [ -e "$target" ]; then
         echo "~${target#$HOME} already exists... Skipping."
     else
