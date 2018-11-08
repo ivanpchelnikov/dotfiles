@@ -1,7 +1,7 @@
 # gitconfig
 [user]
     name = Ivan Pchelnikov
-    email = ivan.pchelnikov@gmail.com
+	email = ivan.pchelnikov@myob.com
 [github]
     user = IvanP
 [init]
