@@ -38,6 +38,7 @@ formulas=(
     git-standup
     entr
     zplug
+    gnugp
 )
 
 for formula in "${formulas[@]}"; do

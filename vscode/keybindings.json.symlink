@@ -1,0 +1,25 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+    { "key": "cmd+]", "command": "workbench.action.nextEditor" },
+    { "key": "cmd+[", "command": "workbench.action.previousEditor" },
+    {
+      "key": "shift+cmd+]",
+      "command": "workbench.action.nextSideBarView",
+      "when": "sideBarFocus"
+    },
+    {
+      "key": "shift+cmd+[",
+      "command": "workbench.action.previousSideBarView",
+      "when": "sideBarFocus"
+    },
+    {
+      "key": "shift+cmd+]",
+      "command": "workbench.action.nextPanelView",
+      "when": "panelFocus"
+    },
+    {
+      "key": "shift+cmd+[",
+      "command": "workbench.action.previousPanelView",
+      "when": "panelFocus"
+    }
+]

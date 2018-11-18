@@ -46,7 +46,14 @@ export PATH=$DOTFILES/bin:$PATH
 
 # check for custom bin directory and add to path
 if [[ -d ~/bin ]]; then
+    #printf "~/bin folder added to path."
     export PATH=~/bin:$PATH
+fi
+
+#add terraform 0.0.8
+if [[ -d ~/Development/Apps/terraforms ]]; then
+    #printf "~/Development/Apps/terraforms exist add terraform to path."
+    export PATH=$PATH:~/Development/Apps/terraforms
 fi
 
 # add a config file for ripgrep
