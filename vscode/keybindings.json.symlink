@@ -21,5 +21,9 @@
       "key": "shift+cmd+[",
       "command": "workbench.action.previousPanelView",
       "when": "panelFocus"
+    },
+    {
+      "key": "ctrl+shift+u",
+      "command": "editor.action.transformToUppercase"
     }
 ]
