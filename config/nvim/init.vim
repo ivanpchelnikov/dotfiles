@@ -107,6 +107,10 @@ call plug#begin('~/.config/nvim/plugged')
 
     " enable 24 bit color support if supported
     if (has("termguicolors"))
+        if (!(has("nvim")))
+            let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+            let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+        endif
         set termguicolors
     endif
 
@@ -279,7 +283,11 @@ call plug#begin('~/.config/nvim/plugged')
     map <silent> <C-k> :call functions#WinMove('k')<cr>
     map <silent> <C-l> :call functions#WinMove('l')<cr>
 
+    nnoremap <silent> <leader>z :call functions#zoom()<cr>
+
     map <leader>wc :wincmd q<cr>
+
+    inoremap <tab> <c-r>=functions#Smart_TabComplete()<CR>
 
     " move line mappings
     " ∆ is <A-j> on macOS
@@ -373,17 +381,8 @@ call plug#begin('~/.config/nvim/plugged')
     " .editorconfig support
     Plug 'editorconfig/editorconfig-vim'
 
-    " asynchronous build and test dispatcher
-    Plug 'tpope/vim-dispatch'
-
-    " netrw helper
-    Plug 'tpope/vim-vinegar'
-
     " single/multi line code handler: gS - split one line into multiple, gJ - combine multiple lines into one
     Plug 'AndrewRadev/splitjoin.vim'
-
-    " extended % matching
-    Plug 'vim-scripts/matchit.zip'
 
     " add end, endif, etc. automatically
     Plug 'tpope/vim-endwise'
@@ -430,17 +429,12 @@ call plug#begin('~/.config/nvim/plugged')
         autocmd User Startified setlocal cursorline
     " }}}
 
-    " Open selection in carbon.now.sh
-    Plug 'kristijanhusak/vim-carbon-now-sh'
-
     " Close buffers but keep splits
     Plug 'moll/vim-bbye'
     nmap <leader>b :Bdelete<cr>
 
     " Writing in vim {{{{
-        Plug 'junegunn/limelight.vim'
         Plug 'junegunn/goyo.vim'
-        let g:limelight_conceal_ctermfg = 240
 
         let g:goyo_entered = 0
         function! s:goyo_enter()
@@ -452,7 +446,6 @@ call plug#begin('~/.config/nvim/plugged')
             set wrap
             setlocal textwidth=0
             setlocal wrapmargin=0
-            Limelight
         endfunction
 
         function! s:goyo_leave()
@@ -463,7 +456,6 @@ call plug#begin('~/.config/nvim/plugged')
             set scrolloff=5
             set textwidth=120
             set wrapmargin=8
-            Limelight!
         endfunction
 
         autocmd! User GoyoEnter nested call <SID>goyo_enter()
@@ -574,25 +566,24 @@ call plug#begin('~/.config/nvim/plugged')
     " }}}
 
     " signify {{{
-        " Plug 'airblade/vim-gitgutter'
         Plug 'mhinz/vim-signify'
         let g:signify_vcs_list = [ 'git' ]
-        let g:signify_sign_add               = '+'
-        let g:signify_sign_delete            = '_'
-        let g:signify_sign_delete_first_line = '‾'
-        let g:signify_sign_change = '!'
+        let g:signify_sign_add               = '┃'
+        let g:signify_sign_delete            = '-'
+        let g:signify_sign_delete_first_line = '_'
+        let g:signify_sign_change = '┃'
     " }}}
 
     " vim-fugitive {{{
         Plug 'tpope/vim-fugitive'
-        Plug 'tpope/vim-rhubarb' " hub extension for fugitive
-        Plug 'junegunn/gv.vim'
-        Plug 'sodapopcan/vim-twiggy'
-        Plug 'christoomey/vim-conflicted'
         nmap <silent> <leader>gs :Gstatus<cr>
         nmap <leader>ge :Gedit<cr>
         nmap <silent><leader>gr :Gread<cr>
         nmap <silent><leader>gb :Gblame<cr>
+
+        Plug 'tpope/vim-rhubarb' " hub extension for fugitive
+        Plug 'junegunn/gv.vim'
+        Plug 'sodapopcan/vim-twiggy'
     " }}}
 
     " ALE {{{
@@ -605,11 +596,12 @@ call plug#begin('~/.config/nvim/plugged')
         let g:ale_echo_msg_error_str = '✖'
         let g:ale_echo_msg_warning_str = '⚠'
         let g:ale_echo_msg_format = '%severity% %s% [%linter%% code%]'
-        let g:ale_completion_enabled = 1
+        " let g:ale_completion_enabled = 1
 
         let g:ale_linters = {
-        \   'javascript': ['eslint', 'tsserver'],
+        \   'javascript': ['eslint'],
         \   'typescript': ['tsserver', 'tslint'],
+        \   'typescript.tsx': ['tsserver', 'tslint'],
         \   'html': []
         \}
         let g:ale_fixers = {}
@@ -628,14 +620,14 @@ call plug#begin('~/.config/nvim/plugged')
     " }}}
 
     " Completion {{{
-        " if (has('nvim'))
-        "     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-        " else
-        "     Plug 'Shougo/deoplete.nvim'
-        "     Plug 'roxma/nvim-yarp'
-        "     Plug 'roxma/vim-hug-neovim-rpc'
-        " endif
-        " let g:deoplete#enable_at_startup = 1
+        if (has('nvim'))
+            Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+        else
+            Plug 'Shougo/deoplete.nvim'
+            Plug 'roxma/nvim-yarp'
+            Plug 'roxma/vim-hug-neovim-rpc'
+        endif
+        let g:deoplete#enable_at_startup = 1
     " }}}
 " }}}
 
@@ -672,11 +664,12 @@ call plug#begin('~/.config/nvim/plugged')
 
     " TypeScript {{{
         Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+        Plug 'ianks/vim-tsx', { 'for': 'typescript' }
         Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
-        " Plug 'mhartington/nvim-typescript', { 'for': 'typescript', 'do': './install.sh' }
-        " let g:nvim_typescript#diagnostics_enable = 0
-        " let g:nvim_typescript#max_completion_detail=100
+        Plug 'mhartington/nvim-typescript', { 'for': 'typescript', 'do': './install.sh' }
+        let g:nvim_typescript#diagnostics_enable = 0
+        let g:nvim_typescript#max_completion_detail=100
     " }}}
 
 
@@ -691,6 +684,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " markdown {{{
         Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+        let g:markdown_fenced_languages = [ 'tsx=typescript.tsx' ]
 
         " Open markdown files in Marked.app - mapped to <leader>m
         Plug 'itspriddle/vim-marked', { 'for': 'markdown', 'on': 'MarkedOpen' }
