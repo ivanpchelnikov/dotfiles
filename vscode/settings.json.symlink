@@ -5,7 +5,31 @@
     "workbench.editor.highlightModifiedTabs": true,
     "editor.renderWhitespace": "none",
     "workbench.colorTheme": "One Dark Pro",
-    "workbench.iconTheme": "vscode-icons",
     "git.confirmSync": false,
-    "javascript.updateImportsOnFileMove.enabled": "always"
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "editor.largeFileOptimizations": false,
+    "window.zoomLevel": 0,
+    "diffEditor.ignoreTrimWhitespace": true,
+        // Custom tags for the parser to use
+    "yaml.customTags": [
+            "!And",
+            "!If",
+            "!Not",
+            "!Equals",
+            "!Or",
+            "!FindInMap sequence",
+            "!Base64",
+            "!Cidr",
+            "!Ref",
+            "!Sub",
+            "!GetAtt",
+            "!GetAZs",
+            "!ImportValue",
+            "!Select",
+            "!Select sequence",
+            "!Split",
+            "!Join sequence"
+        ],
+        // Enable/disable default YAML formatter (requires restart)
+    "yaml.format.enable": true    
 }

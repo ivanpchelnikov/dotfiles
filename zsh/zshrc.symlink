@@ -59,6 +59,11 @@ if [[ -d ~/Development/Apps/terraforms ]]; then
     #printf "~/Development/Apps/terraforms exist add terraform to path."
     export PATH=$PATH:~/Development/Apps/terraforms
 fi
+#add BuildKite pipe
+if [[ -d ~/Development/Apps/Pipe ]]; then
+    #printf "~/Development/Apps/Pipe exist add terraform to path."
+    export PATH=$PATH:~/Development/Apps/Pipe
+fi
 
 # add a config file for ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
