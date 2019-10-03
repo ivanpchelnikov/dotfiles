@@ -1,4 +1,4 @@
-DOTFILES = ~/.dotfiles
+DOTFILES=$HOME/.dotfiles
 
 export ZSH=$DOTFILES/zsh
 
@@ -225,3 +225,5 @@ alias ta='tmux attach'
 alias tls='tmux ls'
 alias tat='tmux attach -t'
 alias tns='tmux new-session -s'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
