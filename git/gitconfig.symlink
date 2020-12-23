@@ -1,11 +1,16 @@
 # gitconfig
 [user]
-    name = Ivan Pchelnikov
-	email = ivan.pchelnikov@myob.com
+    name = Ivan P
+	email = ivan.pchelnikov@gmail.com
 [github]
     user = IvanP
 [init]
     templatedir = ~/.dotfiles/git/templates
+    defaultBranch = main
+[include]
+    # A local gitconfig, outside of version control.
+    # If the file doesn't exist it is silently ignored
+    path = ~/.gitconfig-local
 [alias]
     # list all aliases
     la = "!git config -l | grep alias | cut -c 7-"
@@ -21,6 +26,10 @@
     br = branch -v
     addnw = "!sh -c 'git diff -U0 -w --no-color \"$@\" | git apply --cached --ignore-whitespace --unidiff-zero -'"
     cane = commit --amend --no-edit
+    poh = push -u origin head
+
+    # gh commands
+    browse = "!gh repo view --web"
 
     # rebase commands
     cont = rebase --continue

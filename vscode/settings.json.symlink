@@ -4,7 +4,7 @@
     "search.useGlobalIgnoreFiles": true,
     "workbench.editor.highlightModifiedTabs": true,
     "editor.renderWhitespace": "none",
-    "workbench.colorTheme": "Dracula Soft",
+    "workbench.colorTheme": "One Dark Pro",
     "git.confirmSync": false,
     "javascript.updateImportsOnFileMove.enabled": "always",
     "editor.largeFileOptimizations": false,
