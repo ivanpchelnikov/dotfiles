@@ -177,6 +177,9 @@ fi
 # reload zsh config
 alias reload!='RELOAD=1 source ~/.zshrc'
 
+export LSCOLORS=GxFxCxDxBxegedabagaceh
+#export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
     colorflag="--color"
@@ -193,7 +196,7 @@ alias ...='cd ../..'
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-alias l="ls -lah ${colorflag}"
+alias l="ls -haltr ${colorflag}"
 alias la="ls -AF ${colorflag}"
 alias ll="ls -lFh ${colorflag}"
 alias lld="ls -l | grep ^d"
@@ -227,3 +230,5 @@ alias tat='tmux attach -t'
 alias tns='tmux new-session -s'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export GOPATH="${HOME}/.go"

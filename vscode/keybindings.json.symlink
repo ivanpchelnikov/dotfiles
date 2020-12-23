@@ -25,5 +25,9 @@
     {
       "key": "ctrl+shift+u",
       "command": "editor.action.transformToUppercase"
+    },
+    {
+      "key": "shift+alt+l",
+      "command": "editor.action.transformToLowercase"
     }
 ]
